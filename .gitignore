@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *.pyo
 
+.myenv
 # Ignore virtual environment
 venv/
 .env/
