@@ -51,7 +51,7 @@ jobs:
         --mlflow_tracking_uri http://localhost:5555
 
     -name: clean up docker
-    run: |
-      docker stop mlflow-server
-      docker rm mlflow-server
-      docker rmi ghcr.io/mlflow/mlflow:latest
+     run: |
+        docker stop mlflow-server
+        docker rm mlflow-server
+        docker rmi ghcr.io/mlflow/mlflow:latest
