@@ -1,0 +1,35 @@
+name: MLOPS-CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run Data Processing
+      run: |
+        python src/data_processing.py \
+        --input_path data/raw/house_data.csv \
+        --output_path data/processed/cleaned_house_data.csv
+    
+    - name: Feature Engineering
+      run: |
+        python src/feature_engineering.py \
+        --input_path data/processed/cleaned_house_data.csv \
+        --output_path data/processed/featured_house_data.csv \
+        --processor_path models/trained/preprocessor.pkl
