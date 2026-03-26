@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: streamlit
+  name: streamlit
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: streamlit
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: streamlit
+    spec:
+      containers:
+      - image: sunny250707/fastapi:fa3d72927668e9c5f614c851f2599632f5406000
+        name: fastapi
+        ports:
+        - containerPort: 8000
+        resources: {}
+status: {}
